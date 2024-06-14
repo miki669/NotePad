@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:NotePad.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="NotePad.Views.MainView"
+             x:DataType="vm:MainViewModel">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MainViewModel />
+	</Design.DataContext>
+
+	<Grid>
+		<DockPanel>
+			<!-- Меню сверху -->
+			<Menu DockPanel.Dock="Top" Background="Gray">
+				<!-- Файл -->
+				<MenuItem Header="File" >
+					<MenuItem Header="Open" Command="{Binding OpenFileCommand}" />
+					<MenuItem Header="Save" Command="{Binding SaveFileCommand}" />
+					<MenuItem Header="Save As" Command="{Binding SaveAsFileCommand}" />
+				</MenuItem>
+                <MenuItem Header="Report">
+					<MenuItem Header="Create a report" Command="{Binding CreateReportCommand}" />
+
+				</MenuItem>
+			</Menu>
+
+			<!-- Поле для ввода текста -->
+			<ScrollViewer>
+				<TextBox Text="{Binding Text}" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"
+						 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+						 BorderThickness="0"/>
+			</ScrollViewer>
+		</DockPanel>
+	</Grid>
+</UserControl>
